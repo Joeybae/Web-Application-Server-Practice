@@ -4,11 +4,15 @@
 
 1월 20일 월요일
 
-  - db migration setting, migration commit
+  - sequelize 설치, migration commit
   
         # npm install mysql2 sequelize
         # npm install -g sequelize-cli
         # sequelize init
+        
+  - db migration 정의 및 실행
+  
+        # sequelize db:migrate
 
 -------------------------
 
