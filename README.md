@@ -2,7 +2,13 @@
 
 -------------------------
 
-1월 20일 월요일
+1월 22일 수요일
+
+  - CRUD routes & Views 추가, CRUD commit
+
+-------------------------
+
+1월 21일 화요일
 
   - sequelize 설치, migration commit
   
