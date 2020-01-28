@@ -2,6 +2,12 @@
 
 -------------------------
 
+1월 23일 목요일
+
+  - reply migrate 추가, reply commit
+
+-------------------------
+
 1월 22일 수요일
 
   - CRUD routes & Views 추가, CRUD commit
