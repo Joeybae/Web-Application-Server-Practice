@@ -5,6 +5,9 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const models = require("./models/index.js");
 const methodOverride = require('method-override');
+const passportConfig = require('./config/passport')
+const passport = require("passport");
+const UserController = require('../controllers/api/v1/UserController');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -21,6 +24,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+//passport
+app.use(passport.initialize());
+passportConfig();
+// passport를 미들웨어로 장착해주기만 하면 된다.
+router.get('/users', passport.authenticate('jwt', {session: false}), UserController.index);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

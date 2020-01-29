@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var controller = require('../controllers')
+var controller = require('../controller')
 var models = require('../models')
 
 router.get('/', controller.basicAPI);
