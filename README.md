@@ -2,6 +2,12 @@
 
 -------------------------
 
+1월 28일 화요일
+
+  - 회원가입 view, sequelize, migration 추가
+
+-------------------------
+
 1월 23일 목요일
 
   - reply migrate 추가, reply commit
