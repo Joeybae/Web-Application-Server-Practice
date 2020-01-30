@@ -5,12 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const models = require("./models/index.js");
 const methodOverride = require('method-override');
-const passportConfig = require('./config/passport')
-const passport = require("passport");
-const UserController = require('../controllers/api/v1/UserController');
+const passport = require('passport');
+const session = require('express-session');
+
+require('./config/passport');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var auth = require('./routes/auth');
 
 var app = express();
 
@@ -18,20 +20,28 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+//session
+app.use(session({
+  key: 'sid',
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
+  }
+}));
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
-//passport
-app.use(passport.initialize());
-passportConfig();
-// passport를 미들웨어로 장착해주기만 하면 된다.
-router.get('/users', passport.authenticate('jwt', {session: false}), UserController.index);
 
 app.use('/', indexRouter);
+//app.use('/users', passport.authenticate('jwt', {session: false}), usersRouter);
 app.use('/users', usersRouter);
+app.use('/auth', auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -6,6 +6,8 @@
 1월 29일 수요일
 
   - 비밀번호 salt 추가
+  - passport, passport-local, passport-jwt, jsonwebtoken module 추가
+  - jwt 인증 추가
 
 -------------------------
 
