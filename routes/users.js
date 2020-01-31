@@ -3,9 +3,12 @@ const router = express.Router();
 const models = require("../models");
 const crypto = require("crypto");
 
+let jwt = require("jsonwebtoken");
+let secretObj = require("../config/jwt");
+
 // 회원가입 GET
 router.get('/sign_up', function(req, res, next) {
-  res.render("user/signup");
+  res.render("users/signup");
 });
 
 // 회원가입 POST
@@ -45,6 +48,15 @@ router.get('/login', function(req, res, next) {
 router.post("/login", async function(req,res,next){
   let body = req.body;
 
+  // jwt token
+  let token = jwt.sign({
+    email : body.userEmail   // 토큰의 내용(payload)
+  },
+  secretObj.secret ,    // 비밀 키
+  {
+    expiresIn: '5m'    // 유효 시간은 5분
+  })
+
   let result = await models.user.findOne({
     where: {
       email : body.userEmail
@@ -60,7 +72,13 @@ router.post("/login", async function(req,res,next){
     console.log("비밀번호 일치");
     // 세션 설정
     req.session.email = body.userEmail;
-    res.redirect("/users/login");
+    //res.redirect("/users/login");
+
+    //token
+    res.cookie("user", token);
+    res.json({
+      token: token
+    })
   }
   else{
     console.log("비밀번호 불일치");
@@ -75,10 +93,5 @@ router.get("/logout", function(req,res,next){
 
   res.redirect("/users/login")
 })
-
-/* GET user profile. */
-router.get('/profile', function(req, res, next) {
-  res.send(req.user);
-});
 
 module.exports = router;

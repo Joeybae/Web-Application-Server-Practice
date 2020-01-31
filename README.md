@@ -1,5 +1,14 @@
 # Web-Application-Server-Practice
 
+-------------------------
+
+1월 30일 목요일
+
+  - login view, routes 기능 추가
+  - express-session module 설치 및 기능 추가
+  - passport 추가 (미완성)
+  - jsonwebtoken 추가 (미완성)
+  - passport, passport-jwt, passport-local, jsonwebtoken module 설치
 
 -------------------------
 
