@@ -10,8 +10,10 @@ router.post('/post-test', controller.postTestAPI);
 // post-select
 router.get('/board', function(req, res, next) {
     models.post.findAll().then( result => {
+        let session = req.session;
         res.render("posts/show", {
-        posts: result
+          session : session,
+          posts: result
         });
     });
     // //특정 데이터 select

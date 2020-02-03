@@ -2,6 +2,13 @@
 
 -------------------------
 
+1월 31일 금요일
+
+  - login 시 jsonwebtoken 발행 기능 추가
+  - config/jwt.js에서 secretkey 생성
+
+-------------------------
+
 1월 30일 목요일
 
   - login view, routes 기능 추가

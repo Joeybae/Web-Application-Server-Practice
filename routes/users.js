@@ -72,6 +72,7 @@ router.post("/login", async function(req,res,next){
     console.log("비밀번호 일치");
     // 세션 설정
     req.session.email = body.userEmail;
+    req.session.token = token
     //res.redirect("/users/login");
 
     //token
