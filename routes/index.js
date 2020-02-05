@@ -6,6 +6,7 @@ var models = require('../models')
 router.get('/', controller.basicAPI);
 router.get('/test', controller.testAPI);
 router.post('/post-test', controller.postTestAPI);
+router.post('/login-test', controller.loginTestAPI);
 
 // post-select
 router.get('/board', function(req, res, next) {

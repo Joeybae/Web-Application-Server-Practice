@@ -75,6 +75,9 @@ router.post("/login", async function(req,res,next){
     req.session.token = token
     //res.redirect("/users/login");
 
+    // res.status(200).json({
+    //   "token" : token
+    // });
     //token
     res.cookie("user", token);
     res.json({
